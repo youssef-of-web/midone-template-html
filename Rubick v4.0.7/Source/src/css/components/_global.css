@@ -1,0 +1,20 @@
+html {
+    @apply bg-primary;
+    &.dark {
+        @apply bg-darkmode-800;
+        body {
+            @apply text-slate-300;
+            *,
+            ::before,
+            ::after {
+                @apply border-white/5;
+            }
+        }
+    }
+    body {
+        @apply antialiased overflow-x-hidden py-3 px-8 font-roboto text-sm text-slate-800;
+        @include media-breakpoint-down(sm) {
+            @apply px-3;
+        }
+    }
+}

@@ -1,0 +1,27 @@
+.content {
+    border-radius: 35px/50px 0px 0px 0px;
+    @apply min-w-0 min-h-screen bg-slate-100 flex-1 pb-10 px-6 relative ml-4 dark:bg-darkmode-700;
+    @include media-breakpoint-down(md) {
+        border-radius: 30px;
+        @apply px-4 max-w-full ml-0;
+    }
+    &:before {
+        content: "";
+        @apply w-full h-px block;
+    }
+    &:after {
+        content: "";
+        z-index: -1;
+        border-radius: 40px 0px 0px 0px;
+        @apply w-full inset-y-0 absolute left-0 bg-white/10 mt-8 -ml-4 dark:bg-darkmode-400/50;
+    }
+    &.content--top-nav {
+        border-radius: 35px 35px 0px 0px;
+        @apply mt-8 ml-0;
+        &:after {
+            width: 97%;
+            border-radius: 40px 40px 0px 0px;
+            @apply left-0 right-0 mx-auto -mt-4;
+        }
+    }
+}

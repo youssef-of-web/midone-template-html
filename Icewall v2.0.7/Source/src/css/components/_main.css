@@ -1,0 +1,3 @@
+.main {
+    @apply py-5 bg-no-repeat bg-fixed bg-[url(../images/bg-main.svg)] dark:bg-[url(../images/bg-main-dark.svg)];
+}

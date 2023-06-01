@@ -1,0 +1,178 @@
+.top-nav {
+    transform: translatey(35px);
+    animation: 0.4s intro-top-menu-animation ease-in-out 0.33333s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.2s;
+    @apply z-50 relative opacity-0 -mt-[3px];
+    @include media-breakpoint-down(md) {
+        @apply hidden;
+    }
+    > ul {
+        @for $i from 1 through 50 {
+            > li:nth-child($i) {
+                & > a {
+                    &:not(.top-menu--active) {
+                        @apply opacity-0;
+                        transform: translateY(50px);
+                        animation: 0.4s
+                            intro-menu-animation
+                            ease-in-out
+                            0.33333s;
+                        animation-fill-mode: forwards;
+                        animation-delay: calc($i * 0.1s);
+                    }
+                    &.top-menu--active {
+                        animation: 0.4s
+                            intro-active-menu-animation
+                            ease-in-out
+                            0.33333s;
+                        animation-fill-mode: forwards;
+                    }
+                }
+            }
+        }
+        padding: 0px 50px;
+        @apply flex flex-wrap;
+        @include media-breakpoint-down(xl) {
+            @apply px-6;
+        }
+        > li > .top-menu {
+            @apply mt-[3px];
+            > .top-menu__icon {
+                @apply -mt-[3px];
+            }
+            > .top-menu__title {
+                @apply -mt-[3px];
+            }
+        }
+        li {
+            @apply relative;
+            &:hover {
+                > .top-menu > .top-menu__title > .top-menu__sub-icon {
+                    @apply rotate-180;
+                }
+                > ul {
+                    @apply block;
+                    li:hover
+                        .top-menu
+                        > .top-menu__title
+                        > .top-menu__sub-icon {
+                        @apply -rotate-90;
+                    }
+                }
+            }
+            .top-menu {
+                height: 55px;
+                @apply flex items-center px-5 mr-1 text-white relative rounded-xl;
+                @include media-breakpoint-down(xl) {
+                    @apply rounded-full;
+                }
+                &.top-menu--active {
+                    @apply bg-primary;
+                    @include media-breakpoint-down(xl) {
+                        @apply bg-slate-100 dark:bg-darkmode-700;
+                    }
+                    &:before {
+                        content: "";
+                        @apply block inset-0 bg-white/[0.08] rounded-xl absolute border-b-[3px] border-solid border-black/10 dark:bg-darkmode-700;
+                        @include media-breakpoint-down(xl) {
+                            @apply hidden;
+                        }
+                    }
+                    .top-menu__icon {
+                        @apply dark:text-white;
+                        @include media-breakpoint-down(xl) {
+                            @apply text-primary;
+                        }
+                    }
+                    .top-menu__title {
+                        @apply font-medium dark:text-white;
+                        @include media-breakpoint-down(xl) {
+                            @apply text-slate-800;
+                        }
+                    }
+                }
+                .top-menu__icon {
+                    @apply z-10 dark:text-slate-400;
+                }
+                .top-menu__title {
+                    @apply z-10 dark:text-slate-400;
+                }
+                .top-menu__title {
+                    @apply ml-3 flex items-center whitespace-nowrap;
+                    .top-menu__sub-icon {
+                        @apply transition ease-in duration-100 w-4 h-4 ml-2;
+                        @include media-breakpoint-down(xl) {
+                            @apply hidden;
+                        }
+                    }
+                }
+            }
+            ul {
+                box-shadow: 0px 3px 20px #0000000b;
+                @apply bg-primary hidden w-56 absolute rounded-md z-20 px-0 mt-1 before:block before:absolute before:w-full before:h-full before:bg-white/[0.04] before:inset-0 before:rounded-md before:z-[-1] dark:before:bg-black/10;
+                &:after {
+                    content: "";
+                    @apply w-full h-1 absolute top-0 left-0 -mt-1 cursor-pointer;
+                }
+                li {
+                    @apply px-5 relative;
+                    .top-menu {
+                        @apply px-0 mr-0;
+                        .top-menu__icon:before {
+                            @apply hidden;
+                        }
+                        .top-menu__title {
+                            @apply w-full;
+                            .top-menu__sub-icon {
+                                @apply ml-auto;
+                            }
+                        }
+                    }
+                }
+                ul {
+                    left: 100%;
+                    @apply bg-primary hidden rounded-md mt-0 ml-0 top-0 before:block before:absolute before:w-full before:h-full before:bg-white/[0.04] before:inset-0 before:rounded-md before:z-[-1] dark:before:bg-black/10;
+                }
+            }
+        }
+        > li:hover > .top-menu:not(.top-menu--active) {
+            @apply bg-primary/60 dark:bg-transparent;
+            &:before {
+                content: "";
+                @apply block inset-0 bg-white/[0.04] rounded-xl absolute z-[-1] dark:bg-darkmode-700;
+                @include media-breakpoint-down(xl) {
+                    @apply rounded-full;
+                }
+            }
+        }
+    }
+}
+
+@keyframes intro-top-menu-animation {
+    100% {
+        @apply opacity-100;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes intro-active-top-menu-animation {
+    100% {
+        @apply z-10;
+    }
+}
+
+.dark {
+    .top-nav {
+        > ul {
+            li {
+                ul {
+                    @apply bg-darkmode-600;
+                }
+            }
+            ul {
+                box-shadow: 0px 3px 7px #0000001c;
+            }
+        }
+    }
+}
